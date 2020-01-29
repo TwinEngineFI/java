@@ -1,0 +1,65 @@
+ import java.util.Random;
+import java.text.DecimalFormat;
+
+public class Test{
+public static void main(String[] args){
+final Random r = new Random();
+        
+        System.out.println("Generoidaan janat...");
+        DecimalFormat muuntaja = new DecimalFormat("#.##");
+        for(int i = 0; i < 10; i++){
+            Jana j = new Jana(new Piste(r.nextInt(10),r.nextInt(10)), new Piste(r.nextInt(10),r.nextInt(10)));
+            System.out.println(j + "; Pituus: " + Double.valueOf(muuntaja.format(j.pituus())));
+        }
+}
+}
+
+class Jana{
+    
+    private Piste p1;
+    private Piste p2;
+    
+    public Jana(Piste p1, Piste p2){
+        this.p1 = p1;
+        this.p2 = p2;
+    }
+    // Start; 
+    
+ public double pituus() {
+	   double leveys;
+	   double korkeus;
+	   double hypotenuusa;
+	   
+	   leveys = p1.annaX() - p2.annaX();
+	   korkeus = p1.annaY() - p2.annaY();
+	   
+	   hypotenuusa = sqrt((leveys * leveys) + (korkeus * korkeus));
+	   
+	   return hypotenuusa;
+   }
+   
+       // No touchie.
+    public String toString(){
+        return "p1: (" + p1.annaX() + "," + p1.annaY() + "); p2: (" + p2.annaX() + "," + p2.annaY() + ")";
+    }
+}
+
+class Piste{
+    
+    private int x;
+    
+    private int y;
+    
+    public Piste(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    public int annaX(){
+        return x;
+    }
+    
+    public int annaY(){
+        return y;
+    }
+}
