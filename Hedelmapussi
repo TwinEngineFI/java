@@ -1,0 +1,101 @@
+package OOP5;
+ 
+/*
+Kirjoita luokka Hedelmapussi, joka toteuttaa oheisessa ohjelmassa esittellyn 
+rajapintaluokan Tuote.
+
+Tuotteella on nimi, paino ja kokonaishinta; näiden asetus- ja havainnointimetodien 
+lisäksi tuote osaa tarvittaessa palauttaa kilohinnan kokonaishinnan ja -painon perusteella.
+*/
+import java.util.Random;
+import java.text.DecimalFormat;
+
+public class Hedelmapussi{
+    public static void main(String[] args){
+        final Random rnd = new Random();
+        
+        
+        final String[] hed = "Omena Appelsiini Banaani Meloni Greippi Mandariini".split(" ");
+        final DecimalFormat df = new DecimalFormat("#.##");
+        
+        for (int i=0; i<3; i++){
+            Hedelmapussi h = new Hedelmapussi();
+            h.asetaHinta(rnd.nextInt(20) + 5);
+            h.asetaNimi(hed[rnd.nextInt(hed.length)]);
+            h.asetaPaino(rnd.nextInt(5) + 3);
+            
+            System.out.println(h.annaNimi() + "pussi");
+            System.out.println("Kokonaishinta:" + h.annaHinta());
+            System.out.println("Kokonaispaino:" + h.annaPaino());
+            System.out.println("Kilohinta:" + df.format(h.annaKilohinta()));
+            System.out.println();
+        }
+    }
+}
+interface Tuote{
+    
+    void asetaHinta(double hinta);
+    double annaHinta();
+    
+    void asetaNimi(String nimi);
+    String annaNimi();
+    
+    void asetaPaino(int paino);
+    int annaPaino();
+    
+    double annaKilohinta();
+}
+// STARTING HERE.
+
+abstract class Hedelmapussi implements Tuote{
+	private String nimi;
+	private int paino;
+	private double hinta; 
+	private double kilohinta;
+	private double kokonaishinta;
+	
+	public double annaKilohinta() {
+		return kilohinta;
+	}
+	
+	public double asetaKilohinta(int paino, double hinta) {
+		this.paino = paino;
+		this.hinta = hinta;
+	}
+	
+	public double annaKokonaishinta() {
+		return kokonaishinta;
+	}
+	
+	public String annaNimi() {
+		return nimi;
+	}
+	
+	public int annaPaino() {
+		return paino;
+	}
+	
+	public double annaHinta() {
+		return hinta;
+	}
+	
+	public void asetaNimi(String nimi) {
+		this.nimi = nimi;
+	}
+	
+	public void asetaHinta(int kokonaishinta) {
+		this.kokonaishinta = kokonaishinta;
+	}
+	
+	public void asetaPaino(int paino) {
+		this.paino = paino;
+		}
+}
+
+/*
+Kirjoita luokka Hedelmapussi, joka toteuttaa oheisessa ohjelmassa esitellyn 
+rajapintaluokan Tuote.
+
+Tuotteella on nimi, paino ja kokonaishinta; näiden asetus- ja havainnointimetodien 
+lisäksi tuote osaa tarvittaessa palauttaa kilohinnan kokonaishinnan ja -painon perusteella.
+*/
