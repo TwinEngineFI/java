@@ -47,24 +47,13 @@ interface Tuote{
 }
 // STARTING HERE.
 
-abstract class Hedelmapussi implements Tuote{
+class Hedelmapussi implements Tuote{
 	private String nimi;
 	private int paino;
 	private double hinta; 
-	private double kilohinta;
-	private double kokonaishinta;
 	
 	public double annaKilohinta() {
-		return kilohinta;
-	}
-	
-	public double asetaKilohinta(int paino, double hinta) {
-		this.paino = paino;
-		this.hinta = hinta;
-	}
-	
-	public double annaKokonaishinta() {
-		return kokonaishinta;
+		return hinta / paino;
 	}
 	
 	public String annaNimi() {
@@ -83,8 +72,8 @@ abstract class Hedelmapussi implements Tuote{
 		this.nimi = nimi;
 	}
 	
-	public void asetaHinta(int kokonaishinta) {
-		this.kokonaishinta = kokonaishinta;
+	public void asetaHinta(int hinta) {
+		this.hinta = hinta;
 	}
 	
 	public void asetaPaino(int paino) {
